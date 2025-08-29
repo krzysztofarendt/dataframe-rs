@@ -9,8 +9,6 @@ use std::fmt;
 use std::fs::File;
 use std::io::prelude::*;
 
-const FIELD_WIDTH: usize = 8;
-
 #[derive(Debug)]
 pub struct DataFrame {
     pub columns: Vec<Column>,  // TODO: Add HashMap <name, col_num>
@@ -172,7 +170,7 @@ impl DataFrame {
         max_rows: Option<usize>,
     ) -> String {
         // Get the field width (columns will be adjusted to the right)
-        let width = field_width.unwrap_or(FIELD_WIDTH);
+        let width = field_width.unwrap_or(config::FIELD_WIDTH);
         // Get the num rows (only these many rows will be printed if it's not None)
         let num_rows = max_rows.unwrap_or(self.num_rows);
         let num_rows_skipped: usize = self.num_rows - num_rows;
@@ -214,7 +212,7 @@ impl DataFrame {
 
 impl fmt::Display for DataFrame {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let field_width = Some(FIELD_WIDTH);
+        let field_width = Some(config::FIELD_WIDTH);
         let max_rows = None;
         write!(f, "{}", self.pretty_string(config::CSV_SEP, field_width, max_rows))
     }
