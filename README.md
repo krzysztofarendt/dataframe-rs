@@ -7,6 +7,6 @@ Do not use it in production ;-)
 ## Example
 
 ```bash
-cargo run
-cat test.csv
+cargo run   # Run main.rs
+cargo test  # Run tests
 ```
