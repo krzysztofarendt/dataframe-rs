@@ -1,10 +1,18 @@
 use anyhow::Result;
+use std::fs;
 
 use dataframe::column::Column;
+use dataframe::config;
 use dataframe::dataframe::DataFrame;
 use dataframe::series::Series;
 use dataframe::types::{Float, Int, Text};
-use dataframe::config;
+
+const TEST_CSV: &str = "test.csv";
+
+fn clean_up() -> Result<()> {
+    fs::remove_file(TEST_CSV)?;
+    Ok(())
+}
 
 /// Checks if a dataframe saved to CSV is equal to dataframe loaded from CSV.
 #[test]
@@ -40,7 +48,8 @@ fn create_write_and_read_csv() -> Result<()> {
     let df_from_csv = DataFrame::from_csv("test.csv", config::CSV_SEP)?;
 
     // Check if both dataframes are equal
-    assert_eq!(df, df_from_csv);    
+    assert_eq!(df, df_from_csv);
 
+    clean_up()?;
     Ok(())
 }
