@@ -7,18 +7,18 @@
 /// # Examples
 ///
 /// ```
-/// debug!("x = {}", 42);
+/// use dataframe::dbg_print;
+/// dbg_print!("x = {}", 42);
 /// // Prints: DEBUG: x = 42
 ///
 /// let a = 1;
 /// let b = 2;
-/// debug!("a = {}, b = {}", a, b);
+/// dbg_print!("a = {}, b = {}", a, b);
 /// // Prints: DEBUG: a = 1, b = 2
 /// ```
-macro_rules! debug_print {
+#[macro_export]
+macro_rules! dbg_print {
     ( $( $arg:tt )* ) => {
         println!("DEBUG: {}", format!($( $arg )*));
     }
 }
-
-pub(crate) use debug_print;

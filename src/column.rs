@@ -6,7 +6,7 @@ use crate::series::Series;
 use crate::data::Data;
 use crate::types::{Int, Float, Text};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Column {
     Int(Series<Int>),
     Float(Series<Float>),

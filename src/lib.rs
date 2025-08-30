@@ -6,4 +6,3 @@ pub mod types;
 pub mod config;
 
 mod debug;
-use debug::debug_print;

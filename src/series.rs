@@ -3,7 +3,7 @@ use crate::types::{Float, Int, Text};
 use anyhow::{Result, anyhow};
 use std::fmt;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct Series<T> {
     pub name: String,
     pub data: Vec<T>,

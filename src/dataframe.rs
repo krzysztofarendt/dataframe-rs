@@ -2,14 +2,14 @@ use crate::column::Column;
 use crate::data::Data;
 use crate::series::Series;
 use crate::types::Text;
-use crate::debug_print;
+use crate::dbg_print;
 use crate::config;
 use anyhow::{Result, anyhow};
 use std::fmt;
 use std::fs::File;
 use std::io::prelude::*;
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct DataFrame {
     pub columns: Vec<Column>,  // TODO: Add HashMap <name, col_num>
     pub index: Option<String>, // TODO: This should be Index instance
@@ -26,7 +26,7 @@ impl Default for DataFrame {
 impl DataFrame {
     /// Creates a new dataframe.
     pub fn new() -> Self {
-        if config::DEBUG { debug_print!("Creating new DataFrame"); }
+        if config::DEBUG { dbg_print!("Creating new DataFrame"); }
         Self {
             columns: Vec::new(),
             index: None,
